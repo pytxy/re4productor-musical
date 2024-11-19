@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Reproductor de Música</title>
+</head>
+<style>
+body {
+    background-image: url("https://th.bing.com/th?q=Atardecer+Morado+Para+Fondos+De+Pantalla&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=es-ES&cc=ES&setlang=es&adlt=moderate&t=1&mw=247");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+body{
+     display: flex;
+            flex-direction: column;
+            
+}
+section {
+    display: flex;
+margin-left: 5%;
+    width: 80%;
+    height: 200px;
+    margin-top: -50px;
+		padding: 10px 30px;
+		border-radius: 20px;
+		background-color: aliceblue;
+	opacity: 0.3;
+}
+#fechahoy {
+    color: rgb(107, 127, 189);
+    font-size: 20px;
+}
+h1 {
+    color: darkkhaki;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin-top: -12px;
+}
+
+  .biblioteca :hover {
+    cursor: pointer;
+    transition: all .5s;
+    color: red;
+    
+}
+
+.biblioteca {
+    list-style: none;
+}
+
+#biblioteca  {
+    background-image: url("https://th.bing.com/th?id=OIP.q0jCfxjVuXbclhQRhE_hwgHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+object-position: contain;
+width: 90px;
+height: 90px;
+    border-radius: 50px;
+margin-left: 40px;
+cursor:pointer;
+}
+ .biblioteca  button:hover   {
+    -webkit-transform:scale(1.5);
+    transform: scale(1.5);
+    transition:all .5s ease-in-out;
+}
+#biblioteca1 {
+    background-image:url("https://th.bing.com/th?id=OIP.kNm-GE13hMlHn0hVN6iu6QAAAA&w=202&h=308&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-position: contain;
+    width: 90px;
+    height: 90px;
+        border-radius: 50px;
+    margin-left: 40px;
+    margin-top: -100px;
+    cursor:pointer;
+    
+}
+#biblioteca2 {
+    background-image:url("data:image/jpeg;base64,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");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-position: contain;
+    width: 90px;
+    height: 90px;
+        border-radius: 50px;
+    margin-left: 40px;
+    margin-top: -100px;
+    cursor:pointer;
+}
+
+#cancionActual  {
+    background: transparent;
+    color:black;
+    border-radius: 40px;
+    font-size:clamp(
+        1.5rem,7vw,3rem
+      );
+}
+ #cancionActual {
+    margin-left: 12rem;
+    width: 100%;
+    color: darkgoldenrod;
+    
+    
+
+}
+#volume{
+    cursor: pointer;
+    color: orange;
+    width: 60%;
+}
+.controles #volume{
+    font-size: 10px;
+    color: orange;
+}
+#progress {
+    appearance: none;
+    -webkit-appearance:none;
+    width: 90%;
+    height: 7px;
+    float: right;
+    background:black;
+    color: orange;
+    border-radius: 40px;
+    margin: 10px 0 14px;
+    cursor: pointer;
+        }
+        #progress ::-webkit-slider-thumb {
+            appearance: none;
+            --wwebkit-appearance:none;
+            background: red;
+            width: 30px;
+            aspect-ratio: 1/1;
+    
+        }
+i {
+    font-size: 50px;
+    border-radius: 40px;
+    cursor: pointer;
+    color: black;
+}
+#playButton  :hover {
+    transform: scale(1,5);
+    transition:0,5s;
+    color: orange;
+}
+#playButton {
+    width: 150px;
+    height: 70px;
+    border-radius: 50%;
+}
+#rebobinar {
+    width: 150px;
+    height: 80px;
+    border-radius: 50%;
+}
+#rebobinar :hover {
+    transform: scale(1.3);
+    transition:all .5s ease-in-out;
+    transition:0,5s;
+    color: orange;   
+}
+#biblioteca.cargarBiblioteca1 {
+    background-color: red;
+    color: red;
+}
+#time {
+    color: orange;
+    font-size: 2rem;
+}
+
+</style>
+<body>   
+     <div id="fechahoy"></div>
+     <h1>Pytxy Reproductor</h1>
+     <div class="biblioteca">
+        <button id ="biblioteca" onclick="cargarBiblioteca1()"></button>
+        <button id="biblioteca1" onclick="cargarBiblioteca2()"></button>
+        <button id="biblioteca2" onclick="cargarBiblioteca3()"></button>
+    <!-- Agregamos un lugar para la lista de canciones -->
+    <ul id="listaCanciones"></ul> <!-- Este es el nuevo elemento -->
+    <label id="cancionActual"></label>
+
+    </div>
+    <section>
+
+    <audio id="audio" ></audio>
+    <div class="controles">
+
+    <label id="volume" for="volume"><i class="bi bi-volume-up-fill" id="volumeIcon"></i></label>
+    <input type="range" id="volume" value="100" min="0" max="100" onchange="setVolume(this.value)">
+    <progress id="progress" value="0" max="100"></progress>
+    <div id="time">0:00</div>
+    <button id="rebobinar" onclick="anteriorCancion()"><i class="bi bi-rewind"></i></button>
+    <button id="playButton" onclick="reproducirPausar()"> <i class="bi bi-play-btn"></i></button>
+    <button id="rebobinar" onclick="siguienteCancion()">    <i class="bi bi-fast-forward"></i></button>
+
+      
+    </div>
+</section>
+
+      <script>
+        // script.js
+
+let canciones = [];
+let indiceActual = 0;
+const audio = document.getElementById("audio");
+const cancionActualText = document.getElementById("cancionActual");
+const listaCanciones = document.getElementById("listaCanciones");
+const audioVolumen = document.getElementById('volumen');
+const progress = document.getElementById('progress');
+const timeDisplay = document.getElementById("time");
+
+ // Referencia a la lista
+// Listas de canciones
+const biblioteca1 = [
+"Morena mia.mp3",
+"",
+"Amante bandido.mp3",
+"",
+"Sevilla.mp3",
+"",
+"Nena.mp3"
+ 
+];
+
+const biblioteca2 = [
+"Ave Maria.mp3",
+"",
+"Single lady.mp3",
+"",
+"Nobody's perfect.mp3",
+];
+const biblioteca3 = [
+"la oreja a las cinco.mp3",
+"",
+"la oreja.mp3"
+
+];
+   
+
+
+// Función para cargar la primera biblioteca
+function cargarBiblioteca1() {
+    canciones = biblioteca1;
+    indiceActual = 0;
+    reproducirCancion();
+    mostrarListaCanciones(); // Mostrar la lista de canciones al cargar
+}
+
+
+// Función para cargar la segunda biblioteca
+function cargarBiblioteca2() {
+    canciones = biblioteca2;
+    indiceActual = 0;
+    reproducirCancion();
+    mostrarListaCanciones(); // Mostrar la lista de canciones al cargar
+}
+
+// Función para cargar la tercera biblioteca
+function cargarBiblioteca3() {
+    canciones = biblioteca3;
+    indiceActual = 0;
+    reproducirCancion();
+    mostrarListaCanciones(); // Mostrar la lista de canciones al cargar
+}
+
+
+
+/*
+function reproducirPausar() {
+	
+
+	if(audio.paused){
+		reproducirCancion();
+		
+		
+	}else {
+		pausarCancion();
+		
+	}
+};
+*/
+
+function reproducirPausar() {
+    const playButton = document.getElementById("playButton");
+    if (audio.paused) {
+        reproducirCancion();
+        playButton.firstElementChild.classList.remove('bi-play-btn');
+        playButton.firstElementChild.classList.add('bi-pause-btn');
+    } else {
+        pausarCancion();
+        playButton.firstElementChild.classList.remove('bi-pause-btn');
+        playButton.firstElementChild.classList.add('bi-play-btn');
+    }
+}
+
+function reproducirCancion() {
+    if (canciones.length > 0) {
+        audio.src = canciones[indiceActual];
+        audio.play();
+        cancionActualText.textContent = " " + canciones[indiceActual].split('/').pop();
+    }
+}
+
+function pausarCancion() {
+    audio.pause();
+}
+
+function setVolume(value) {
+    audio.volume = value / 100; 
+    const volumeIcon = document.getElementById('volumeIcon');
+    if (audio.volume === 0) {
+        volumeIcon.classList.remove('bi-volume-up-fill', 'bi-volume-down-fill');
+        volumeIcon.classList.add('bi-volume-mute-fill');
+    } else if (audio.volume < 0.5) {
+        volumeIcon.classList.remove('bi-volume-up-fill', 'bi-volume-mute-fill');
+        volumeIcon.classList.add('bi-volume-down-fill');
+    } else {
+        volumeIcon.classList.remove('bi-volume-down-fill', 'bi-volume-mute-fill');
+        volumeIcon.classList.add('bi-volume-up-fill');
+    }
+}
+
+
+
+/*
+function reproducirCancion(){
+	audio.play();
+	inconoControl .classList. add( 'bi bi-pause-btn')
+	inconoControl .classList. remove( 'bi bi-play-btn')
+}
+
+function pausarCancion(){
+	audio.pause();
+	inconoControl.classList.remove('bi bi-pause-btn')
+	inconoControl.classList.add('bi bi-play-btn')
+}
+// Función para pausar o reproducir
+function togglePlayPause() {
+    if (audio.paused) {
+        audio.play();
+        actualizarIcono(true);
+    } else {
+        audio.pause();
+        actualizarIcono(false);
+    }
+}
+*/
+
+// Función para reproducir la canción actual
+function reproducirCancion() {
+    if (canciones.length > 0) {
+        audio.src = canciones[indiceActual];
+        audio.play();
+        cancionActualText.textContent = " " + canciones[indiceActual].split('/').pop();
+    }
+}
+
+
+// Función para reproducir la siguiente canción
+function siguienteCancion() {
+    if (canciones.length > 0) {
+        indiceActual = (indiceActual + 1) % canciones.length; // Ciclar al inicio si se llega al final
+        reproducirCancion();
+    }
+}
+// Funciom para reproducir la cancion anterior
+ function anteriorCancion() {
+    if (canciones.length > 0){
+        indiceActual = (indiceActual -1) % canciones.length;
+        reproducirCancion();
+    }
+ }
+
+// Agregar un evento para cuando la canción termine (opcional)
+audio.addEventListener('ended', siguienteCancion);
+
+ // Función para mostrar la lista de canciones
+ function mostrarListaCanciones() {
+    // Limpiar la lista existente
+    listaCanciones.innerHTML = '';
+    // Agregar cada canción a la lista
+    canciones.forEach((cancion,index) => {
+        const li = document.createElement('li'); // Crear un nuevo elemento de lista
+        li.textContent = cancion; // Asignar el texto de la canción
+        li.addEventListener('click', () => {
+            indiceActual = index; // Establecer el índice de la canción seleccionada
+            reproducirCancion(); // Reproducir la canción seleccionada
+        });
+
+
+        listaCanciones.appendChild(li); // Agregarlo a la lista
+    });
+}
+
+//barra de progreso
+audio.addEventListener('timeupdate',function(){
+   const percent =(audio.currentTime/audio.duration) * 100;
+   progress.value =percent
+    });
+    
+    audio.addEventListener('ended',function(){
+        progress.value =0;
+    });
+     // Permite al usuario adelantar o atrasar la canción al hacer clic en la barra de progreso
+     progress.addEventListener('click', (event) => {
+        // Obtener la posición de clic en la barra de progreso
+        const rect = progress.getBoundingClientRect(); // Obtener el rectángulo que encierra la barra
+        const offsetX = event.clientX - rect.left; // Calcular la posición X del clic respecto a la barra
+        const clickPercent = offsetX / rect.width; // Porcentaje del clic en la barra de progreso
+        
+        // Calcular el nuevo tiempo de reproducción basado en el porcentaje
+        const newTime = clickPercent * audio.duration; // Tiempo nuevo en segundos
+        audio.currentTime = newTime; // Actualizar el tiempo del audio
+    });
+
+
+/*
+  // Función para ajustar el volumen
+  function setVolume(value) {
+	audio.volume = value / 100; // El volumen se establece entre 0 y 1
+    }
+
+*/
+  //fechas
+  var d = new Date();
+  var month = new Array(12);
+  month[0] = 'Enero';
+  month[1] = 'Febrero';
+  month[2] = 'Marzo';
+  month[3] = 'Abril';
+  month[4] = 'Mayo';
+  month[5] = 'Junio';
+  month[6] = 'Julio';
+  month[7] = 'Agosto';
+  month[8] = 'Septiembre';
+  month[9] = 'Octubre';
+  month[10] = 'Noviembre';
+  month[11] = 'Diciembre';
+  var todaysDate = +d.getDate() + ' de ' + month[d.getUTCMonth()] + ' del ' + d.getUTCFullYear();
+  document.getElementById('fechahoy').innerHTML = 'Hoy es: ' + todaysDate;
+
+//tiempo de canciones//
+audio.addEventListener("timeupdate", function() {
+	const currentTime = audio.currentTime;
+	const minutes = Math.floor(currentTime / 60);
+	const seconds = Math.floor(currentTime % 60);
+	timeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+});
+
+    </script>
+</body>
+</html>
